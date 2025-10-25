@@ -1,9 +1,49 @@
 _schema: _schema
+source: /
 paths:
   uploads: uploads
   static: ''
-_enabled_editors:
-  - content
+collections_config:
+  posts:
+    path:
+    glob:
+    name:
+    singular_name:
+    icon: notes
+    url:
+    disable_url: false
+    include_developer_files:
+    documentation:
+    description: ''
+    preview:
+    sort:
+    sort_options:
+    _editables:
+    _enabled_editors:
+    _inputs:
+    _select_data:
+    _structures:
+    add_options:
+    create:
+    disable_add: false
+    disable_add_folder: false
+    disable_file_actions: false
+    new_preview_url:
+    schemas:
+    schema_key:
+commit_templates:
+  - label:
+    template_string:
+    template_path:
+    _inputs:
+    extra_data:
+file_config:
+  - glob:
+    _inputs:
+    _structures:
+    _select_data:
+editor:
+  default_path:
 timezone: Asia/Dhaka
 markdown:
   engine: commonmark
