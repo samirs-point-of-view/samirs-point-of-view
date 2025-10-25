@@ -44,9 +44,13 @@ file_config:
     _select_data:
 editor:
   default_path:
+source_editor:
+  tab_size: 2
+  theme: monokai
+  show_gutter: true
 timezone: Asia/Dhaka
 markdown:
-  engine: commonmark
+  engine:
   options:
     xhtml: false
     breaks: false
