@@ -2,6 +2,8 @@ _schema: _schema
 paths:
   uploads: uploads
   static: ''
+_enabled_editors:
+  - content
 timezone: Asia/Dhaka
 markdown:
   engine: commonmark
