@@ -1,0 +1,1485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAMIRs Point Of View - Solving Everyday Problems</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Base Styles */
+        :root {
+            --matt-purple: #4A4453;
+            --matt-purple-dark: #3A3443;
+            --matt-purple-light: #5A5463;
+            --matt-purple-lighter: #6A6473;
+            --matt-gold: #B8A47C;
+            --matt-gold-light: #D4C6A5;
+            --matt-gold-dark: #9C8C64;
+            --matt-gold-accent: #E8D9B0;
+            --light: #F5F3F7;
+            --text: #333333;
+            --text-light: #6C6C6C;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--light);
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--matt-gold);
+            transition: var(--transition);
+        }
+
+        a:hover {
+            color: var(--matt-gold-light);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--matt-gold);
+            color: var(--matt-purple);
+            padding: 12px 24px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 600;
+            box-shadow: 0 2px 4px rgba(184, 164, 124, 0.3);
+        }
+
+        .btn:hover {
+            background: var(--matt-gold-light);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(184, 164, 124, 0.4);
+        }
+
+        section {
+            padding: 60px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+            color: var(--matt-purple);
+        }
+
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background: var(--matt-gold);
+            margin: 15px auto;
+            box-shadow: 0 2px 4px rgba(184, 164, 124, 0.3);
+        }
+
+        /* Header Styles */
+        header {
+            background: var(--matt-purple);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 3px solid var(--matt-gold);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--matt-gold);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+        }
+
+        .logo span {
+            color: var(--matt-gold-light);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 25px;
+        }
+
+        nav ul li a {
+            color: var(--light);
+            font-weight: 500;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+
+        nav ul li a:hover, nav ul li a.active {
+            color: var(--matt-gold);
+            background: rgba(184, 164, 124, 0.1);
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--matt-gold);
+            padding: 5px;
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+
+        .mobile-menu:hover {
+            background: rgba(184, 164, 124, 0.1);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(74, 68, 83, 0.85), rgba(74, 68, 83, 0.9)), url('https://images.unsplash.com/photo-1499750310107-5fef28a66643?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: var(--light);
+            text-align: center;
+            padding: 120px 0;
+            position: relative;
+        }
+
+        .hero:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, var(--matt-purple) 0%, transparent 50%, var(--matt-purple-dark) 100%);
+            opacity: 0.3;
+        }
+
+        .hero .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+        }
+
+        /* Latest Articles */
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .article-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border-top: 4px solid var(--matt-gold);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s ease forwards;
+            position: relative;
+        }
+
+        .article-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--matt-gold), var(--matt-gold-light));
+            z-index: 1;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .article-img {
+            height: 200px;
+            background-color: #ddd;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .article-content {
+            padding: 20px;
+        }
+
+        .article-content h3 {
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+            color: var(--matt-purple);
+        }
+
+        .article-content p {
+            color: var(--text-light);
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+
+        .article-meta {
+            display: flex;
+            justify-content: space-between;
+            color: var(--text-light);
+            font-size: 0.85rem;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+        }
+
+        /* About Section */
+        .about {
+            background: linear-gradient(135deg, white 0%, var(--light) 100%);
+            position: relative;
+        }
+
+        .about:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--matt-purple), var(--matt-gold), var(--matt-purple));
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text h2 {
+            margin-bottom: 20px;
+            color: var(--matt-purple);
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            color: var(--text-light);
+        }
+
+        .about-image {
+            flex: 1;
+            height: 400px;
+            border-radius: 8px;
+            background-image: url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            box-shadow: var(--shadow);
+            border: 3px solid var(--matt-gold-light);
+        }
+
+        /* Newsletter Section */
+        .newsletter {
+            background: linear-gradient(135deg, var(--matt-purple) 0%, var(--matt-purple-dark) 100%);
+            color: var(--light);
+            text-align: center;
+            position: relative;
+        }
+
+        .newsletter:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--matt-gold), var(--matt-gold-light), var(--matt-gold));
+        }
+
+        .newsletter h2 {
+            margin-bottom: 20px;
+        }
+
+        .newsletter p {
+            max-width: 600px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+        }
+
+        .newsletter-form {
+            max-width: 500px;
+            margin: 0 auto;
+            display: flex;
+            background: white;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 12px 15px;
+            border: none;
+            font-size: 1rem;
+            background: var(--light);
+        }
+
+        .newsletter-form button {
+            background: var(--matt-gold);
+            color: var(--matt-purple);
+            border: none;
+            padding: 0 25px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 120px;
+        }
+
+        .newsletter-form button:hover {
+            background: var(--matt-gold-light);
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--matt-purple-dark) 0%, var(--matt-purple) 100%);
+            color: var(--light);
+            padding: 60px 0 30px;
+            border-top: 3px solid var(--matt-gold);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+            position: relative;
+            padding-bottom: 10px;
+            color: var(--matt-gold);
+        }
+
+        .footer-column h3:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 2px;
+            background: var(--matt-gold-light);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: #bdc3c7;
+            transition: var(--transition);
+            padding: 2px 0;
+            display: inline-block;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--matt-gold-light);
+            padding-left: 5px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--matt-gold-light);
+            font-size: 0.9rem;
+        }
+
+        /* Page Transitions */
+        .page-transition {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            display: none;
+        }
+        
+        .page-transition.active {
+            opacity: 1;
+            transform: translateY(0);
+            display: block;
+        }
+
+        /* Article Page Styles */
+        .article-page {
+            min-height: 100vh;
+            display: none;
+        }
+
+        .article-header {
+            background: linear-gradient(135deg, var(--matt-purple) 0%, var(--matt-purple-dark) 100%);
+            color: white;
+            padding: 60px 0;
+            margin-bottom: 40px;
+            border-bottom: 3px solid var(--matt-gold);
+        }
+
+        .article-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .article-meta-large {
+            display: flex;
+            gap: 20px;
+            color: var(--matt-gold-light);
+        }
+
+        .article-featured-image {
+            height: 400px;
+            background-size: cover;
+            background-position: center;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            border: 3px solid var(--matt-gold-light);
+        }
+
+        .article-body {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .article-body p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        .article-body h2 {
+            margin: 30px 0 15px;
+            color: var(--matt-purple);
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--matt-gold-light);
+        }
+
+        .article-body ul, .article-body ol {
+            margin-bottom: 20px;
+            padding-left: 20px;
+        }
+
+        .article-body li {
+            margin-bottom: 10px;
+        }
+
+        .back-to-home {
+            display: inline-block;
+            margin-top: 30px;
+            color: var(--matt-gold);
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 12px 24px;
+            border: 2px solid var(--matt-gold);
+            border-radius: 4px;
+            transition: var(--transition);
+            background: rgba(184, 164, 124, 0.1);
+        }
+
+        .back-to-home:hover {
+            color: var(--matt-gold-light);
+            transform: translateX(-5px);
+            border-color: var(--matt-gold-light);
+            background: rgba(184, 164, 124, 0.2);
+        }
+
+        /* Loading animation for better UX */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: var(--matt-gold);
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Scroll to top button */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--matt-gold);
+            color: var(--matt-purple);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            opacity: 0;
+            visibility: hidden;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+            border: 2px solid var(--matt-purple);
+        }
+
+        .scroll-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-to-top:hover {
+            background: var(--matt-gold-light);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+        }
+
+        /* Load More Button */
+        .load-more-container {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .load-more {
+            background: var(--matt-purple);
+            color: var(--matt-gold-light);
+            border: 2px solid var(--matt-gold);
+        }
+
+        .load-more:hover {
+            background: var(--matt-purple-light);
+            color: var(--matt-gold-accent);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .about-image {
+                width: 100%;
+            }
+            
+            .article-featured-image {
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 20px;
+                flex-direction: column;
+                display: none;
+                width: 100%;
+            }
+            
+            nav ul.show {
+                display: flex;
+            }
+            
+            nav ul li {
+                margin: 10px 0;
+                text-align: center;
+            }
+            
+            .mobile-menu {
+                display: block;
+                position: absolute;
+                top: 20px;
+                right: 20px;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+            
+            .newsletter-form input {
+                border-radius: 4px;
+                margin-bottom: 10px;
+            }
+            
+            .newsletter-form button {
+                border-radius: 4px;
+                padding: 12px;
+                min-width: auto;
+            }
+            
+            .article-header h1 {
+                font-size: 2rem;
+            }
+            
+            .article-featured-image {
+                height: 200px;
+            }
+            
+            .article-meta-large {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .scroll-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 45px;
+                height: 45px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .articles-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero {
+                padding: 80px 0;
+            }
+            
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            section {
+                padding: 40px 0;
+            }
+            
+            .article-header {
+                padding: 40px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">SAMIR<span>'s</span> Point Of View</div>
+                <div class="mobile-menu">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#" class="home-link active">Home</a></li>
+                        <li><a href="#articles">Articles</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#newsletter">Newsletter</a></li>
+                        <li><a href="#" class="btn explore-articles">Explore Articles</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Scroll to top button -->
+    <div class="scroll-to-top">
+        <i class="fas fa-chevron-up"></i>
+    </div>
+
+    <!-- Home Page Content -->
+    <div id="home-page" class="page-transition active">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <h1>Solving Everyday Problems</h1>
+                <p>Practical solutions for the challenges of daily living. From productivity hacks to relationship advice, find answers to life's common problems.</p>
+                <a href="#articles" class="btn">Explore Articles</a>
+            </div>
+        </section>
+
+        <!-- Latest Articles -->
+        <section id="articles">
+            <div class="container">
+                <h2 class="section-title">Latest Articles</h2>
+                <p style="text-align: center; margin-bottom: 40px; color: var(--text-light);">Practical solutions for everyday challenges</p>
+                
+                <div class="articles-grid" id="articles-container">
+                    <!-- Articles will be loaded here by JavaScript -->
+                </div>
+
+                <div class="load-more-container">
+                    <button class="btn load-more" id="load-more">Load More Articles</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about">
+            <div class="container">
+                <h2 class="section-title">About SAMIRs Point Of View</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>Welcome to my corner of the internet where we tackle the everyday problems that make life challenging. I believe that most of life's difficulties have practical solutions if we approach these with the right mindset.</p>
+                        <p>Through this blog, I share insights, strategies, and perspectives that have helped me navigate daily challenges.</p>
+                        <a href="#" class="btn read-all-articles">Read All Articles</a>
+                    </div>
+                    <div class="about-image"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsletter Section -->
+        <section id="newsletter" class="newsletter">
+            <div class="container">
+                <h2>Stay Updated</h2>
+                <p>Get the latest articles and practical tips delivered directly to your inbox.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Enter your email address" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </section>
+    </div>
+
+    <!-- Article Pages Container -->
+    <div id="article-pages-container">
+        <!-- Article pages will be generated dynamically -->
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>SAMIRs Point Of View</h3>
+                    <p style="color: #bdc3c7;">Practical solutions for everyday challenges. Sharing insights to help you navigate life's difficulties with the right mindset.</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#" class="home-link">Home</a></li>
+                        <li><a href="#articles">Latest Articles</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#newsletter">Newsletter</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Categories</h3>
+                    <ul>
+                        <li><a href="#">Consciousness</a></li>
+                        <li><a href="#">Mind Mastery</a></li>
+                        <li><a href="#">Time Perception</a></li>
+                        <li><a href="#">Deep Thinking</a></li>
+                        <li><a href="#">Mental Alchemy</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 SAMIRs Point Of View. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Complete article data with ALL 20 articles
+        const articles = [
+            {
+                id: 1,
+                title: "5 Mindful Practices to Reduce Daily Stress",
+                description: "Learn simple mindfulness techniques that can help you manage stress and improve your mental clarity throughout the day.",
+                image: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80",
+                readTime: "6 min read",
+                date: "Oct 22, 2025",
+                content: `
+                    <p>In our fast-paced world, stress has become a constant companion for many of us. The good news is that mindfulness practices offer powerful tools to manage and reduce daily stress. Here are five simple yet effective techniques you can incorporate into your daily routine.</p>
+                    
+                    <h2>1. Morning Mindful Breathing</h2>
+                    <p>Start your day with just five minutes of focused breathing. Find a quiet space, sit comfortably, and bring your attention to your breath. Notice the sensation of air entering and leaving your body.</p>
+                    
+                    <h2>2. The STOP Technique</h2>
+                    <p>Throughout your day, practice the STOP technique whenever you feel overwhelmed:</p>
+                    <ul>
+                        <li><strong>S</strong> - Stop what you're doing</li>
+                        <li><strong>T</strong> - Take a breath</li>
+                        <li><strong>O</strong> - Observe your thoughts and feelings</li>
+                        <li><strong>P</strong> - Proceed with awareness</li>
+                    </ul>
+                    
+                    <p>Remember, mindfulness is a skill that develops with practice. Start with just one technique and gradually incorporate others.</p>
+                `
+            },
+            {
+                id: 2,
+                title: "The Art of Effective Communication in Relationships",
+                description: "Discover practical strategies to improve communication with your partner, family, and friends for healthier relationships.",
+                image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80",
+                readTime: "8 min read",
+                date: "Oct 18, 2025",
+                content: `
+                    <p>Effective communication is the foundation of healthy relationships. Whether with partners, family members, or friends, improving how we communicate can transform our connections.</p>
+                    
+                    <h2>Listen to Understand, Not to Respond</h2>
+                    <p>One of the most common communication pitfalls is formulating our response while the other person is still talking. Instead, practice active listening.</p>
+                    
+                    <h2>Use "I" Statements</h2>
+                    <p>When expressing concerns, frame them using "I" statements rather than "you" statements. This approach reduces defensiveness and keeps conversations productive.</p>
+                    
+                    <p>Improving communication is an ongoing process that requires practice and patience. Start by implementing one or two strategies and notice the impact on your relationships.</p>
+                `
+            },
+            {
+                id: 3,
+                title: "Creating a Productive Morning Routine That Actually Works",
+                description: "Transform your mornings with these science-backed strategies to boost productivity and set a positive tone for your day.",
+                image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80",
+                readTime: "7 min read",
+                date: "Oct 15, 2025",
+                content: `
+                    <p>How you start your morning sets the tone for your entire day. A well-designed morning routine can boost productivity, improve mood, and increase your sense of control over your life.</p>
+                    
+                    <h2>Wake Up at the Same Time Every Day</h2>
+                    <p>Consistency is key for regulating your body's internal clock. Try to wake up at the same time every day, even on weekends.</p>
+                    
+                    <h2>Hydrate Before Caffeine</h2>
+                    <p>After 6-8 hours without water, your body needs hydration. Drink a glass of water before reaching for coffee or tea.</p>
+                    
+                    <p>Remember, building a new routine takes time. Start with just one or two elements and gradually add more as they become habits.</p>
+                `
+            },
+            {
+                id: 4,
+                title: "Simple Budgeting Strategies for Financial Peace",
+                description: "Take control of your finances with these straightforward budgeting techniques that anyone can implement.",
+                image: "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80",
+                readTime: "9 min read",
+                date: "Oct 12, 2025",
+                content: `
+                    <p>Financial stress is one of the most common challenges people face. The good news is that with a few simple budgeting strategies, you can take control of your finances and achieve greater peace of mind.</p>
+                    
+                    <h2>The 50/30/20 Rule</h2>
+                    <p>This straightforward budgeting method divides your after-tax income into three categories:</p>
+                    <ul>
+                        <li><strong>50% for Needs:</strong> Essential expenses like housing and groceries</li>
+                        <li><strong>30% for Wants:</strong> Non-essential spending</li>
+                        <li><strong>20% for Savings:</strong> Emergency fund and debt repayment</li>
+                    </ul>
+                    
+                    <p>Remember, the best budget is one you'll actually stick to. Experiment to find what works for your lifestyle.</p>
+                `
+            },
+            {
+                id: 5,
+                title: "Overcoming Procrastination: Practical Techniques",
+                description: "Break free from the cycle of procrastination with these actionable strategies that really work.",
+                image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80",
+                readTime: "7 min read",
+                date: "Oct 8, 2025",
+                content: `
+                    <p>Procrastination affects nearly everyone at some point, but for some, it becomes a significant barrier to productivity and well-being. Understanding why we procrastinate and implementing practical strategies can help break this cycle.</p>
+                    
+                    <h2>The 5-Minute Rule</h2>
+                    <p>Commit to working on a task for just five minutes. Often, the hardest part is getting started. Once you begin, you'll frequently find it easier to continue.</p>
+                    
+                    <h2>Break Tasks Into Smaller Steps</h2>
+                    <p>Large, overwhelming projects invite procrastination. Break them down into specific, manageable actions.</p>
+                    
+                    <p>Overcoming procrastination is a skill that develops with practice. Be patient with yourself and celebrate small victories.</p>
+                `
+            },
+            {
+                id: 6,
+                title: "Building Healthy Habits That Actually Stick",
+                description: "Learn the science-backed methods for creating lasting positive changes in your daily life.",
+                image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80",
+                readTime: "8 min read",
+                date: "Oct 5, 2025",
+                content: `
+                    <p>We all have habits we'd like to change or new ones we'd like to establish, but making them stick is the real challenge. Understanding the science of habit formation can dramatically increase your success rate.</p>
+                    
+                    <h2>Start Small—Really Small</h2>
+                    <p>The most common mistake in habit formation is being too ambitious. If you want to exercise regularly, don't start with an hour at the gym.</p>
+                    
+                    <h2>Use Habit Stacking</h2>
+                    <p>Attach your new habit to an existing one. The formula is: "After [CURRENT HABIT], I will [NEW HABIT]."</p>
+                    
+                    <p>Building lasting habits is a marathon, not a sprint. Focus on progress, not perfection.</p>
+                `
+            },
+            {
+                id: 7,
+                title: "Mastering Emotional Intelligence in the Workplace",
+                description: "Develop the crucial skills of emotional intelligence to advance your career and improve workplace relationships.",
+                image: "https://images.unsplash.com/photo-1551836026-d5c55ac6d66f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80",
+                readTime: "10 min read",
+                date: "Oct 2, 2025",
+                content: `
+                    <p>Emotional Intelligence (EQ) has emerged as one of the most critical skills for professional success. While technical skills get you in the door, emotional intelligence helps you navigate office politics, lead effectively, and build strong professional relationships.</p>
+                    
+                    <h2>Understanding the Four Components of EQ</h2>
+                    <p>Emotional intelligence comprises four key abilities:</p>
+                    <ul>
+                        <li><strong>Self-awareness:</strong> Recognizing your own emotions</li>
+                        <li><strong>Self-management:</strong> Controlling impulsive feelings</li>
+                        <li><strong>Social awareness:</strong> Understanding others' emotions</li>
+                        <li><strong>Relationship management:</strong> Developing good relationships</li>
+                    </ul>
+                    
+                    <p>Developing emotional intelligence is a lifelong journey that pays dividends in both professional success and personal fulfillment.</p>
+                `
+            },
+            {
+                id: 8,
+                title: "The Science of Better Sleep: Evidence-Based Strategies",
+                description: "Improve your sleep quality with scientifically proven methods that enhance rest and daytime performance.",
+                image: "https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80",
+                readTime: "9 min read",
+                date: "Sep 28, 2025",
+                content: `
+                    <p>Quality sleep is foundational to physical health, mental clarity, and emotional stability. Yet many people struggle with getting the restorative sleep they need. Understanding the science behind sleep can help you optimize your rest.</p>
+                    
+                    <h2>Understanding Sleep Cycles</h2>
+                    <p>Sleep occurs in cycles of approximately 90 minutes, moving through light sleep, deep sleep, and REM sleep. Each stage serves different restorative functions.</p>
+                    
+                    <h2>The Circadian Rhythm Reset</h2>
+                    <p>Your body's internal clock responds strongly to light exposure. Get 10-15 minutes of morning sunlight within an hour of waking to properly set your circadian rhythm.</p>
+                    
+                    <p>Improving sleep quality often requires addressing multiple factors simultaneously. Start with one or two changes that seem most manageable.</p>
+                `
+            },
+            {
+                id: 9,
+                title: "Critical Thinking Skills for Better Decision Making",
+                description: "Learn how to apply critical thinking frameworks to make more informed decisions in your personal and professional life.",
+                image: "https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80",
+                readTime: "11 min read",
+                date: "Sep 25, 2025",
+                content: `
+                    <p>Critical thinking is the ability to analyze information objectively and make reasoned judgments. It involves evaluating sources, analyzing arguments, and identifying biases.</p>
+                    
+                    <h2>Ask the Right Questions</h2>
+                    <p>Develop the habit of questioning assumptions, evidence, and conclusions. Ask: What evidence supports this? What might be missing? Are there alternative explanations?</p>
+                    
+                    <h2>Recognize Cognitive Biases</h2>
+                    <p>We all have mental shortcuts that can lead to errors in judgment. Common biases include confirmation bias, availability heuristic, and anchoring.</p>
+                    
+                    <p>Critical thinking is a skill that improves with practice. Make it a habit to question, analyze, and evaluate information systematically.</p>
+                `
+            },
+            {
+                id: 10,
+                title: "Navigating Career Transitions Successfully",
+                description: "Practical guidance for making smooth career changes, whether switching roles, industries, or starting your own business.",
+                image: "https://images.unsplash.com/photo-1542744173-05336fcc7ad4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80",
+                readTime: "12 min read",
+                date: "Sep 22, 2025",
+                content: `
+                    <p>Career transitions can be challenging but also incredibly rewarding. Whether you're changing roles, industries, or starting your own business, proper planning and mindset are key to success.</p>
+                    
+                    <h2>Conduct a Skills Inventory</h2>
+                    <p>Take stock of your transferable skills. Many skills are valuable across different industries and roles.</p>
+                    
+                    <h2>Build Your Network</h2>
+                    <p>Networking is crucial during career transitions. Connect with people in your target industry and learn from their experiences.</p>
+                    
+                    <p>Remember that career transitions are journeys, not destinations. Be patient with yourself and celebrate each step forward.</p>
+                `
+            },
+            {
+                id: 11,
+                title: "Digital Detox: Reclaiming Your Time and Attention",
+                description: "Strategies to reduce digital distraction and regain control over your time, focus, and mental wellbeing.",
+                image: "https://images.unsplash.com/photo-1551836026-de5a5f1daac0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80",
+                readTime: "8 min read",
+                date: "Sep 18, 2025",
+                content: `
+                    <p>In our hyper-connected world, digital distractions constantly compete for our attention. Learning to manage technology rather than being managed by it is essential for mental wellbeing and productivity.</p>
+                    
+                    <h2>Set Digital Boundaries</h2>
+                    <p>Create specific times and spaces for technology use. Designate device-free zones in your home and establish digital curfews.</p>
+                    
+                    <h2>Practice Single-Tasking</h2>
+                    <p>Instead of multitasking across multiple devices and apps, focus on one task at a time. This improves both the quality of your work and your mental clarity.</p>
+                    
+                    <p>A digital detox isn't about eliminating technology entirely, but about using it intentionally rather than compulsively.</p>
+                `
+            },
+            {
+                id: 12,
+                title: "The Architecture of Consciousness: Understanding Your Mind",
+                description: "Explore the fundamental structures of consciousness and learn how to navigate your inner landscape with intention and clarity.",
+                image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80",
+                readTime: "14 min read",
+                date: "Sep 15, 2025",
+                content: `
+                    <p>Consciousness is not a monolithic entity but a complex architecture with multiple layers and dimensions. Understanding this structure is the first step toward mastering your mental landscape and achieving true self-awareness.</p>
+                    
+                    <h2>The Five Layers of Consciousness</h2>
+                    <p>Modern psychology and ancient wisdom traditions both recognize distinct layers of consciousness:</p>
+                    <ul>
+                        <li><strong>Surface Consciousness:</strong> Your immediate awareness of thoughts and environment</li>
+                        <li><strong>Subconscious:</strong> The repository of habits and automatic responses</li>
+                        <li><strong>Personal Unconscious:</strong> Your unique collection of memories and personal archetypes</li>
+                        <li><strong>Collective Unconscious:</strong> The shared human inheritance of instincts and symbols</li>
+                        <li><strong>Pure Consciousness:</strong> The timeless awareness beyond content and form</li>
+                    </ul>
+                    
+                    <p>The journey of understanding your consciousness is lifelong and profoundly rewarding. Each layer you explore and integrate brings greater clarity and mastery.</p>
+                `
+            },
+            {
+                id: 13,
+                title: "Mastering Mental Time Travel: Past and Future Thinking",
+                description: "Learn advanced techniques for mental time projection to resolve past traumas and design your ideal future self.",
+                image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80",
+                readTime: "12 min read",
+                date: "Sep 12, 2025",
+                content: `
+                    <p>Mental time travel refers to our ability to mentally project ourselves backward and forward in time. Mastering this capacity can help heal past wounds and create a compelling future.</p>
+                    
+                    <h2>Healing Past Traumas</h2>
+                    <p>Through guided visualization and reframing techniques, you can revisit past experiences with new understanding and compassion, transforming painful memories into sources of wisdom.</p>
+                    
+                    <h2>Future Self Visualization</h2>
+                    <p>Regularly connecting with your future self creates psychological continuity and helps align present actions with long-term goals and values.</p>
+                    
+                    <p>Mental time travel, when practiced consciously, becomes a powerful tool for personal transformation and intentional living.</p>
+                `
+            },
+            {
+                id: 14,
+                title: "The Quantum Mind: Harnessing Parallel Thought Processes",
+                description: "Discover how to access multiple streams of consciousness simultaneously to solve complex problems and enhance creativity.",
+                image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80",
+                readTime: "16 min read",
+                date: "Sep 8, 2025",
+                content: `
+                    <p>The human mind possesses an incredible capacity for parallel processing that most of us rarely tap into consciously. Learning to access multiple thought streams can dramatically enhance problem-solving and creative output.</p>
+                    
+                    <h2>Cultivating Mental Multi-tracking</h2>
+                    <p>Through specific meditation and focus techniques, you can learn to maintain awareness of multiple thought streams without being overwhelmed by any single one.</p>
+                    
+                    <h2>The Observer State</h2>
+                    <p>Developing the ability to observe your thoughts from a meta-perspective allows you to work with multiple ideas simultaneously while maintaining clarity and direction.</p>
+                    
+                    <p>Quantum thinking isn't about doing more things at once, but about accessing deeper dimensions of your cognitive capacity.</p>
+                `
+            },
+            {
+                id: 15,
+                title: "Thought Alchemy: Transforming Negative Mental Patterns",
+                description: "Advanced techniques for identifying and transmuting destructive thought patterns into constructive mental frameworks.",
+                image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80",
+                readTime: "13 min read",
+                date: "Sep 5, 2025",
+                content: `
+                    <p>Thought alchemy is the practice of consciously transforming negative or limiting thought patterns into empowering mental frameworks. This transformative process requires awareness, intention, and specific techniques.</p>
+                    
+                    <h2>Pattern Recognition</h2>
+                    <p>The first step in thought alchemy is developing the ability to recognize recurring negative thought patterns as they arise, without judgment or identification.</p>
+                    
+                    <h2>Conscious Reframing</h2>
+                    <p>Once a pattern is recognized, you can consciously choose to reframe it, finding the hidden opportunity or lesson within the challenging thought.</p>
+                    
+                    <p>Thought alchemy turns mental challenges into opportunities for growth and transformation, building psychological resilience over time.</p>
+                `
+            },
+            {
+                id: 16,
+                title: "Temporal Mastery: Controlling Your Perception of Time",
+                description: "Learn to expand or compress your subjective experience of time to enhance productivity and presence.",
+                image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80",
+                readTime: "11 min read",
+                date: "Sep 2, 2025",
+                content: `
+                    <p>While we cannot control chronological time, we have significant influence over our subjective experience of time. Learning to work with temporal perception can dramatically enhance both productivity and quality of life.</p>
+                    
+                    <h2>Flow State Induction</h2>
+                    <p>Through specific conditions and mental frameworks, you can learn to enter flow states where time seems to expand, allowing for deep focus and heightened performance.</p>
+                    
+                    <h2>Mindful Time Compression</h2>
+                    <p>For unpleasant but necessary tasks, you can learn techniques to compress your subjective experience of time, making them feel shorter and more manageable.</p>
+                    
+                    <p>Temporal mastery is about becoming the author of your time experience rather than its victim.</p>
+                `
+            },
+            {
+                id: 17,
+                title: "Meta-Cognition: Thinking About Thinking",
+                description: "Develop the ability to observe your own thought processes from a higher perspective for greater self-awareness and control.",
+                image: "https://images.unsplash.com/photo-1551836026-d5c55ac6d66f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80",
+                readTime: "15 min read",
+                date: "Aug 29, 2025",
+                content: `
+                    <p>Meta-cognition, or thinking about thinking, is one of the highest forms of cognitive functioning. It involves observing your own mental processes from a detached perspective, creating space between you and your thoughts.</p>
+                    
+                    <h2>The Witness Position</h2>
+                    <p>Practice shifting into the witness position—the part of you that can observe thoughts without being identified with them. This creates psychological freedom and choice.</p>
+                    
+                    <h2>Thought Mapping</h2>
+                    <p>Learn to map your thought patterns, identifying triggers, habitual responses, and the underlying beliefs that drive your mental processes.</p>
+                    
+                    <p>Meta-cognition transforms you from being lost in your thoughts to being the conscious director of your mental landscape.</p>
+                `
+            },
+            {
+                id: 18,
+                title: "The Silence Between Thoughts: Accessing Pure Awareness",
+                description: "Master the art of finding and expanding the gaps between thoughts to access deeper states of consciousness.",
+                image: "https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80",
+                readTime: "12 min read",
+                date: "Aug 25, 2025",
+                content: `
+                    <p>Between our thoughts exist brief moments of pure silence and awareness. Learning to access and expand these gaps can lead to profound states of peace, clarity, and insight.</p>
+                    
+                    <h2>Noticing the Gaps</h2>
+                    <p>The first step is simply becoming aware of the natural pauses that occur between thoughts. With practice, you can learn to extend these moments of mental silence.</p>
+                    
+                    <h2>Resting in Awareness</h2>
+                    <p>As you become more skilled at finding the gaps between thoughts, you can learn to rest in the pure awareness that exists beyond mental content.</p>
+                    
+                    <p>The silence between thoughts is not empty but full of potential—it's the source from which creative insights and deep understanding emerge.</p>
+                `
+            },
+            {
+                id: 19,
+                title: "Mental Sovereignty: Taking Full Control of Your Mind",
+                description: "Advanced practices for establishing complete authority over your mental landscape and emotional responses.",
+                image: "https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80",
+                readTime: "14 min read",
+                date: "Aug 22, 2025",
+                content: `
+                    <p>Mental sovereignty means establishing yourself as the ultimate authority in your own mind. It involves taking full responsibility for your thoughts, emotions, and responses, regardless of external circumstances.</p>
+                    
+                    <h2>Establishing Inner Authority</h2>
+                    <p>Through specific practices, you can learn to recognize and dis-identify from mental patterns that don't serve you, reclaiming your power of choice.</p>
+                    
+                    <h2>Emotional Alchemy</h2>
+                    <p>Learn to work with intense emotions as energy that can be transformed and directed rather than suppressed or expressed reactively.</p>
+                    
+                    <p>Mental sovereignty is not about controlling every thought, but about choosing which thoughts to entertain and which to let pass.</p>
+                `
+            },
+            {
+                id: 20,
+                title: "The Observer Self: Detaching from Mental Content",
+                description: "Learn to identify with the timeless observer consciousness rather than being lost in transient thoughts and emotions.",
+                image: "https://images.unsplash.com/photo-1542744173-05336fcc7ad4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80",
+                readTime: "13 min read",
+                date: "Aug 18, 2025",
+                content: `
+                    <p>The observer self is the aspect of consciousness that can watch thoughts, emotions, and sensations without being identified with them. Learning to identify with this witness consciousness brings profound freedom and peace.</p>
+                    
+                    <h2>Shifting Identification</h2>
+                    <p>Practice shifting your sense of identity from the content of your mind (thoughts, emotions, memories) to the awareness that observes this content.</p>
+                    
+                    <h2>Timeless Presence</h2>
+                    <p>The observer self exists outside of time—it's the same awareness that was present in childhood and will be present in old age. Resting in this timeless presence brings deep stability.</p>
+                    
+                    <p>As you strengthen your connection to the observer self, life's challenges become easier to navigate, as you're no longer completely identified with passing mental states.</p>
+                `
+            }
+        ];
+
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu').addEventListener('click', function() {
+            document.querySelector('nav ul').classList.toggle('show');
+        });
+
+        // Newsletter form submission
+        document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const submitBtn = this.querySelector('button');
+            const originalText = submitBtn.innerHTML;
+            
+            // Show loading state
+            submitBtn.innerHTML = '<div class="loading"></div> Subscribing...';
+            submitBtn.disabled = true;
+            
+            // Simulate API call
+            setTimeout(() => {
+                const email = this.querySelector('input').value;
+                alert(`Thank you for subscribing with ${email}! You'll receive our latest articles soon.`);
+                this.reset();
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }, 1500);
+        });
+
+        // Page Navigation Functions
+        function showPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page-transition').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Show the selected page
+            setTimeout(() => {
+                const targetPage = document.getElementById(pageId);
+                if (targetPage) {
+                    targetPage.classList.add('active');
+                }
+                window.scrollTo(0, 0);
+                
+                // Update navigation active state
+                updateNavigationState(pageId);
+            }, 50);
+        }
+
+        function updateNavigationState(pageId) {
+            // Remove active class from all nav items
+            document.querySelectorAll('nav a').forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            // Add active class to current page
+            if (pageId === 'home-page') {
+                document.querySelector('.home-link').classList.add('active');
+            }
+        }
+
+        // Generate article pages
+        function generateArticlePages() {
+            const container = document.getElementById('article-pages-container');
+            
+            articles.forEach(article => {
+                const articlePage = document.createElement('div');
+                articlePage.id = `article-${article.id}`;
+                articlePage.className = 'article-page page-transition';
+                articlePage.innerHTML = `
+                    <div class="article-header">
+                        <div class="container">
+                            <h1>${article.title}</h1>
+                            <div class="article-meta-large">
+                                <span><i class="far fa-clock"></i> ${article.readTime}</span>
+                                <span><i class="far fa-calendar"></i> ${article.date}</span>
+                                <span><i class="far fa-user"></i> Samir</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div class="article-featured-image" style="background-image: url('${article.image}');"></div>
+                        <div class="article-body">
+                            ${article.content}
+                            <a href="#" class="back-to-home"><i class="fas fa-arrow-left"></i> Back to Home</a>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(articlePage);
+            });
+        }
+
+        // Article navigation
+        function setupArticleNavigation() {
+            document.querySelectorAll('.read-more').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const articleId = this.getAttribute('data-article');
+                    showPage(`article-${articleId}`);
+                });
+            });
+        }
+
+        // Home navigation
+        function setupHomeNavigation() {
+            document.querySelectorAll('.back-to-home, .home-link, .explore-articles, .read-all-articles').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    if (this.getAttribute('href') === '#' || this.classList.contains('home-link')) {
+                        e.preventDefault();
+                    }
+                    showPage('home-page');
+                });
+            });
+        }
+
+        // Smooth scrolling for anchor links on home page
+        function setupSmoothScrolling() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    // Only process if we're on the home page
+                    if(document.getElementById('home-page').classList.contains('active')) {
+                        const targetId = this.getAttribute('href');
+                        if(targetId === '#' || targetId === '#home-page') return;
+                        
+                        const targetElement = document.querySelector(targetId);
+                        if(targetElement) {
+                            e.preventDefault();
+                            window.scrollTo({
+                                top: targetElement.offsetTop - 80,
+                                behavior: 'smooth'
+                            });
+                        }
+                    }
+                });
+            });
+        }
+
+        // Close mobile menu when clicking on a link
+        function setupMobileMenuClose() {
+            document.querySelectorAll('nav a').forEach(link => {
+                link.addEventListener('click', function() {
+                    if (window.innerWidth <= 768) {
+                        document.querySelector('nav ul').classList.remove('show');
+                    }
+                });
+            });
+        }
+
+        // Scroll to top functionality
+        function setupScrollToTop() {
+            const scrollToTopBtn = document.querySelector('.scroll-to-top');
+            
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    scrollToTopBtn.classList.add('visible');
+                } else {
+                    scrollToTopBtn.classList.remove('visible');
+                }
+            });
+
+            scrollToTopBtn.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        }
+
+        // Load More Articles functionality
+        let visibleArticles = 9;
+        const articlesPerLoad = 6;
+
+        function renderArticles() {
+            const container = document.getElementById('articles-container');
+            container.innerHTML = '';
+            
+            const articlesToShow = articles.slice(0, visibleArticles);
+            
+            articlesToShow.forEach(article => {
+                const articleElement = document.createElement('div');
+                articleElement.className = 'article-card';
+                articleElement.style.animationDelay = `${article.id * 0.1}s`;
+                articleElement.innerHTML = `
+                    <div class="article-img" style="background-image: url('${article.image}');"></div>
+                    <div class="article-content">
+                        <h3>${article.title}</h3>
+                        <p>${article.description}</p>
+                        <a href="#" class="btn read-more" data-article="${article.id}">Read More</a>
+                        <div class="article-meta">
+                            <span><i class="far fa-clock"></i> ${article.readTime}</span>
+                            <span><i class="far fa-calendar"></i> ${article.date}</span>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(articleElement);
+            });
+            
+            // Update load more button visibility
+            const loadMoreBtn = document.getElementById('load-more');
+            if (visibleArticles >= articles.length) {
+                loadMoreBtn.style.display = 'none';
+            } else {
+                loadMoreBtn.style.display = 'inline-block';
+            }
+            
+            // Re-setup article navigation
+            setupArticleNavigation();
+        }
+
+        function setupLoadMore() {
+            document.getElementById('load-more').addEventListener('click', function() {
+                visibleArticles += articlesPerLoad;
+                renderArticles();
+            });
+        }
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Generate article pages first
+            generateArticlePages();
+            
+            // Setup all functionality
+            setupHomeNavigation();
+            setupSmoothScrolling();
+            setupMobileMenuClose();
+            setupScrollToTop();
+            setupLoadMore();
+            
+            // Render articles and show home page
+            renderArticles();
+            showPage('home-page');
+        });
+
+        // Handle page visibility for better performance
+        document.addEventListener('visibilitychange', function() {
+            if (document.hidden) {
+                // Page is hidden, pause any intensive animations
+            } else {
+                // Page is visible, resume animations
+            }
+        });
+    </script>
+</body>
+</html>
