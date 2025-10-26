@@ -5,164 +5,412 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Morning Routine Tracker</title>
     <style>
-        body {
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: #333;
-            max-width: 800px;
-            margin: 0 auto;
+            line-height: 1.6;
+            min-height: 100vh;
             padding: 20px;
-            background-color: #f9f9f9;
         }
-        h1 {
-            color: #2c3e50;
-            border-bottom: 2px solid #3498db;
-            padding-bottom: 10px;
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
         }
-        h2 {
-            color: #3498db;
-        }
-        .routine-container {
-            background: white;
-            border-radius: 8px;
-            padding: 25px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        
+        header {
+            text-align: center;
             margin-bottom: 30px;
+            color: white;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
         }
-        .routine-step {
-            margin-bottom: 15px;
-            padding: 15px;
-            border-left: 4px solid #3498db;
-            background-color: #f8f9fa;
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
         }
-        .tracker {
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .card {
             background: white;
-            border-radius: 8px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             padding: 25px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 25px;
         }
-        .step-item {
+        
+        h2 {
+            color: #4a5568;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+        
+        .routine-step {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            background-color: #f7fafc;
+            transition: all 0.3s ease;
+            border-left: 4px solid #4299e1;
+        }
+        
+        .routine-step:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .step-number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: #4299e1;
+            color: white;
+            border-radius: 50%;
+            font-weight: bold;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .step-content {
+            flex-grow: 1;
+        }
+        
+        .step-content h3 {
+            margin-bottom: 5px;
+            color: #2d3748;
+        }
+        
+        .step-content p {
+            color: #718096;
+        }
+        
+        .tracker-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .tracker-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .step-tracker {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .tracker-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 12px;
-            margin-bottom: 10px;
-            border-radius: 5px;
-            background-color: #f8f9fa;
+            padding: 15px;
+            background: #f7fafc;
+            border-radius: 10px;
+            transition: all 0.3s ease;
         }
+        
+        .tracker-item.completed {
+            background: #c6f6d5;
+            border-left: 4px solid #38a169;
+        }
+        
+        .tracker-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
         button {
-            background-color: #3498db;
+            background: #4299e1;
             color: white;
             border: none;
             padding: 8px 15px;
-            border-radius: 4px;
+            border-radius: 6px;
             cursor: pointer;
-            transition: background-color 0.3s;
+            font-weight: 600;
+            transition: all 0.3s ease;
         }
+        
         button:hover {
-            background-color: #2980b9;
+            background: #3182ce;
+            transform: translateY(-2px);
         }
+        
         button.completed {
-            background-color: #27ae60;
+            background: #38a169;
         }
-        .progress-bar {
-            height: 20px;
-            background-color: #ecf0f1;
-            border-radius: 10px;
-            margin: 20px 0;
-            overflow: hidden;
+        
+        button.completed:hover {
+            background: #2f855a;
         }
-        .progress {
-            height: 100%;
-            background-color: #3498db;
-            width: 0%;
-            transition: width 0.5s;
-        }
-        .stats {
-            display: flex;
-            justify-content: space-between;
+        
+        .progress-container {
             margin-top: 20px;
         }
+        
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .progress-bar {
+            height: 20px;
+            background: #e2e8f0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .progress {
+            height: 100%;
+            background: linear-gradient(90deg, #4299e1, #38a169);
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 25px;
+        }
+        
         .stat-box {
             text-align: center;
-            padding: 15px;
-            background-color: #f8f9fa;
-            border-radius: 5px;
-            flex: 1;
-            margin: 0 5px;
+            padding: 20px;
+            background: #f7fafc;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-        code {
-            background-color: #f1f1f1;
-            padding: 2px 4px;
-            border-radius: 3px;
-            font-family: 'Courier New', monospace;
+        
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #4299e1;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            color: #718096;
+            font-size: 0.9rem;
+        }
+        
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 25px;
+        }
+        
+        .reset-btn {
+            background: #e53e3e;
+        }
+        
+        .reset-btn:hover {
+            background: #c53030;
+        }
+        
+        .motivation {
+            text-align: center;
+            margin-top: 20px;
+            font-style: italic;
+            color: #718096;
+        }
+        
+        .completed-steps {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f0fff4;
+            border-radius: 10px;
+            border-left: 4px solid #38a169;
+        }
+        
+        .completed-steps h3 {
+            color: #2d3748;
+            margin-bottom: 10px;
+        }
+        
+        .completed-list {
+            list-style-type: none;
+        }
+        
+        .completed-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .completed-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .time {
+            color: #718096;
+            font-size: 0.9rem;
         }
     </style>
 </head>
 <body>
-    <h1>Creating a Simple Morning Routine for Productivity</h1>
-    
-    <div class="routine-container">
-        <h2>The 5-Step Morning Routine</h2>
+    <div class="container">
+        <header>
+            <h1>Morning Routine Tracker</h1>
+            <p class="subtitle">Start your day right with a productive morning routine</p>
+        </header>
         
-        <div class="routine-step">
-            <h3>1. Hydrate (5 minutes)</h3>
-            <p>Start your day with a glass of water to rehydrate after sleep. Add lemon for an extra boost.</p>
-        </div>
-        
-        <div class="routine-step">
-            <h3>2. Move (10-15 minutes)</h3>
-            <p>Engage in light physical activity like stretching, yoga, or a brisk walk to wake up your body.</p>
-        </div>
-        
-        <div class="routine-step">
-            <h3>3. Plan (5 minutes)</h3>
-            <p>Review your calendar and identify your top 3 priorities for the day.</p>
-        </div>
-        
-        <div class="routine-step">
-            <h3>4. Learn (10 minutes)</h3>
-            <p>Read an industry article, listen to a podcast, or watch an educational video.</p>
-        </div>
-        
-        <div class="routine-step">
-            <h3>5. Focus (5 minutes)</h3>
-            <p>Complete one small but meaningful task to build momentum for the rest of your day.</p>
-        </div>
-    </div>
-    
-    <div class="tracker">
-        <h2>Track Your Routine</h2>
-        <p>Use this simple tracker to monitor your consistency:</p>
-        
-        <div id="routine-tracker">
-            <!-- Steps will be added here by JavaScript -->
-        </div>
-        
-        <div class="progress-bar">
-            <div class="progress" id="progress-bar"></div>
-        </div>
-        
-        <div class="stats">
-            <div class="stat-box">
-                <h3 id="completed-count">0</h3>
-                <p>Completed Today</p>
+        <div class="card">
+            <h2>The 5-Step Productivity Routine</h2>
+            
+            <div class="routine-step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3>Hydrate (5 minutes)</h3>
+                    <p>Drink a glass of water to rehydrate your body after sleep. Add lemon for an extra boost.</p>
+                </div>
             </div>
-            <div class="stat-box">
-                <h3 id="streak-count">0</h3>
-                <p>Day Streak</p>
+            
+            <div class="routine-step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3>Move (10-15 minutes)</h3>
+                    <p>Light stretching, yoga, or a brisk walk to wake up your body and increase blood flow.</p>
+                </div>
             </div>
-            <div class="stat-box">
-                <h3 id="total-count">0</h3>
-                <p>Total Completed</p>
+            
+            <div class="routine-step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3>Plan (5 minutes)</h3>
+                    <p>Review your calendar and identify your top 3 priorities for the day.</p>
+                </div>
+            </div>
+            
+            <div class="routine-step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h3>Learn (10 minutes)</h3>
+                    <p>Read an industry article, listen to a podcast, or watch an educational video.</p>
+                </div>
+            </div>
+            
+            <div class="routine-step">
+                <div class="step-number">5</div>
+                <div class="step-content">
+                    <h3>Focus (5 minutes)</h3>
+                    <p>Complete one small but meaningful task to build momentum for the rest of your day.</p>
+                </div>
             </div>
         </div>
         
-        <button id="reset-button">Reset Day</button>
+        <div class="card">
+            <h2>Track Your Progress</h2>
+            
+            <div class="tracker-container">
+                <div class="step-tracker">
+                    <div class="tracker-item" id="step-1">
+                        <div>
+                            <strong>Hydrate</strong>
+                            <div class="time">5 minutes</div>
+                        </div>
+                        <button data-step="1">Mark Complete</button>
+                    </div>
+                    
+                    <div class="tracker-item" id="step-2">
+                        <div>
+                            <strong>Move</strong>
+                            <div class="time">10-15 minutes</div>
+                        </div>
+                        <button data-step="2">Mark Complete</button>
+                    </div>
+                    
+                    <div class="tracker-item" id="step-3">
+                        <div>
+                            <strong>Plan</strong>
+                            <div class="time">5 minutes</div>
+                        </div>
+                        <button data-step="3">Mark Complete</button>
+                    </div>
+                    
+                    <div class="tracker-item" id="step-4">
+                        <div>
+                            <strong>Learn</strong>
+                            <div class="time">10 minutes</div>
+                        </div>
+                        <button data-step="4">Mark Complete</button>
+                    </div>
+                    
+                    <div class="tracker-item" id="step-5">
+                        <div>
+                            <strong>Focus</strong>
+                            <div class="time">5 minutes</div>
+                        </div>
+                        <button data-step="5">Mark Complete</button>
+                    </div>
+                </div>
+                
+                <div class="progress-container">
+                    <div class="progress-header">
+                        <span>Today's Progress</span>
+                        <span id="progress-percent">0%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress" id="progress-bar"></div>
+                    </div>
+                    
+                    <div class="stats">
+                        <div class="stat-box">
+                            <div class="stat-value" id="completed-count">0</div>
+                            <div class="stat-label">Completed Today</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value" id="streak-count">0</div>
+                            <div class="stat-label">Day Streak</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value" id="total-count">0</div>
+                            <div class="stat-label">Total Completed</div>
+                        </div>
+                    </div>
+                    
+                    <div class="completed-steps">
+                        <h3>Today's Completed Steps</h3>
+                        <ul class="completed-list" id="completed-list">
+                            <li>No steps completed yet</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="controls">
+                <button id="reset-button" class="reset-btn">Reset Today's Progress</button>
+            </div>
+            
+            <div class="motivation" id="motivation-text">
+                Start your morning routine to boost productivity!
+            </div>
+        </div>
     </div>
 
     <script>
-        // Morning routine steps
+        // Morning routine steps data
         const routineSteps = [
             { id: 1, name: "Hydrate", duration: "5 minutes" },
             { id: 2, name: "Move", duration: "10-15 minutes" },
@@ -171,36 +419,56 @@
             { id: 5, name: "Focus", duration: "5 minutes" }
         ];
 
+        // Motivational messages
+        const motivationMessages = [
+            "Start your morning routine to boost productivity!",
+            "Great start! Keep going!",
+            "You're halfway there!",
+            "Almost done! You're doing great!",
+            "Amazing! You've completed your morning routine!",
+            "Perfect! You're ready for a productive day!"
+        ];
+
         // Initialize tracker state
         let trackerState = {
             completed: [],
             streak: 0,
-            totalCompleted: 0
+            totalCompleted: 0,
+            lastCompletedDate: null
         };
 
-        // Load state from localStorage if available
+        // DOM elements
+        const progressBar = document.getElementById('progress-bar');
+        const progressPercent = document.getElementById('progress-percent');
+        const completedCount = document.getElementById('completed-count');
+        const streakCount = document.getElementById('streak-count');
+        const totalCount = document.getElementById('total-count');
+        const completedList = document.getElementById('completed-list');
+        const motivationText = document.getElementById('motivation-text');
+        const resetButton = document.getElementById('reset-button');
+
+        // Load state from localStorage
         function loadState() {
             const savedState = localStorage.getItem('morningRoutineTracker');
             if (savedState) {
                 trackerState = JSON.parse(savedState);
                 
                 // Check if we need to reset for a new day
-                const lastCompletedDate = localStorage.getItem('lastCompletedDate');
                 const today = new Date().toDateString();
-                
-                if (lastCompletedDate !== today) {
-                    // New day, reset completed steps but keep streak if yesterday was completed
+                if (trackerState.lastCompletedDate !== today) {
+                    // Check if we should maintain the streak
                     const yesterday = new Date();
                     yesterday.setDate(yesterday.getDate() - 1);
                     
-                    if (lastCompletedDate === yesterday.toDateString() && 
+                    if (trackerState.lastCompletedDate === yesterday.toDateString() && 
                         trackerState.completed.length === routineSteps.length) {
-                        // Maintain streak
-                    } else if (lastCompletedDate !== yesterday.toDateString()) {
-                        // Break streak
+                        // Maintain streak - yesterday was fully completed
+                    } else if (trackerState.lastCompletedDate !== yesterday.toDateString()) {
+                        // Break streak if not consecutive days
                         trackerState.streak = 0;
                     }
                     
+                    // Reset completed steps for the new day
                     trackerState.completed = [];
                 }
             }
@@ -209,8 +477,8 @@
 
         // Save state to localStorage
         function saveState() {
+            trackerState.lastCompletedDate = new Date().toDateString();
             localStorage.setItem('morningRoutineTracker', JSON.stringify(trackerState));
-            localStorage.setItem('lastCompletedDate', new Date().toDateString());
         }
 
         // Toggle completion of a step
@@ -225,14 +493,13 @@
                 // Check if all steps are completed for the first time today
                 if (trackerState.completed.length === routineSteps.length) {
                     // Check if this is a consecutive day
-                    const lastCompletedDate = localStorage.getItem('lastCompletedDate');
-                    const today = new Date().toDateString();
+                    const today = new Date();
                     const yesterday = new Date();
                     yesterday.setDate(yesterday.getDate() - 1);
                     
-                    if (lastCompletedDate === yesterday.toDateString()) {
+                    if (trackerState.lastCompletedDate === yesterday.toDateString()) {
                         trackerState.streak++;
-                    } else if (lastCompletedDate !== today) {
+                    } else if (trackerState.lastCompletedDate !== today.toDateString()) {
                         trackerState.streak = 1;
                     }
                 }
@@ -248,66 +515,123 @@
 
         // Reset the current day's progress
         function resetDay() {
-            trackerState.completed = [];
-            saveState();
-            updateDisplay();
+            if (confirm("Are you sure you want to reset today's progress?")) {
+                trackerState.completed = [];
+                saveState();
+                updateDisplay();
+            }
         }
 
         // Update the display
         function updateDisplay() {
-            const trackerElement = document.getElementById('routine-tracker');
-            const progressBar = document.getElementById('progress-bar');
-            const completedCount = document.getElementById('completed-count');
-            const streakCount = document.getElementById('streak-count');
-            const totalCount = document.getElementById('total-count');
-            
-            // Clear existing steps
-            trackerElement.innerHTML = '';
-            
-            // Add each step
-            routineSteps.forEach(step => {
-                const stepElement = document.createElement('div');
-                stepElement.className = 'step-item';
-                
-                const isCompleted = trackerState.completed.includes(step.id);
-                
-                stepElement.innerHTML = `
-                    <div>
-                        <strong>${step.name}</strong> - ${step.duration}
-                    </div>
-                    <button class="${isCompleted ? 'completed' : ''}" data-id="${step.id}">
-                        ${isCompleted ? '✓ Completed' : 'Mark Complete'}
-                    </button>
-                `;
-                
-                trackerElement.appendChild(stepElement);
-            });
-            
             // Update progress bar
             const progressPercentage = (trackerState.completed.length / routineSteps.length) * 100;
             progressBar.style.width = `${progressPercentage}%`;
+            progressPercent.textContent = `${Math.round(progressPercentage)}%`;
             
             // Update stats
             completedCount.textContent = trackerState.completed.length;
             streakCount.textContent = trackerState.streak;
             totalCount.textContent = trackerState.totalCompleted;
             
-            // Add event listeners to buttons
-            document.querySelectorAll('#routine-tracker button').forEach(button => {
-                button.addEventListener('click', function() {
-                    const stepId = parseInt(this.getAttribute('data-id'));
-                    toggleStep(stepId);
-                });
+            // Update step buttons and styling
+            routineSteps.forEach(step => {
+                const stepElement = document.getElementById(`step-${step.id}`);
+                const button = stepElement.querySelector('button');
+                const isCompleted = trackerState.completed.includes(step.id);
+                
+                if (isCompleted) {
+                    stepElement.classList.add('completed');
+                    button.textContent = 'Completed ✓';
+                    button.classList.add('completed');
+                } else {
+                    stepElement.classList.remove('completed');
+                    button.textContent = 'Mark Complete';
+                    button.classList.remove('completed');
+                }
+            });
+            
+            // Update completed list
+            updateCompletedList();
+            
+            // Update motivation text
+            updateMotivationText();
+        }
+
+        // Update the completed steps list
+        function updateCompletedList() {
+            completedList.innerHTML = '';
+            
+            if (trackerState.completed.length === 0) {
+                completedList.innerHTML = '<li>No steps completed yet</li>';
+                return;
+            }
+            
+            // Sort completed steps by ID to maintain order
+            const sortedCompleted = [...trackerState.completed].sort((a, b) => a - b);
+            
+            sortedCompleted.forEach(stepId => {
+                const step = routineSteps.find(s => s.id === stepId);
+                const listItem = document.createElement('li');
+                
+                // Create a timestamp (simulated)
+                const now = new Date();
+                const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                
+                listItem.innerHTML = `
+                    <span>${step.name}</span>
+                    <span class="time">${timeString}</span>
+                `;
+                
+                completedList.appendChild(listItem);
             });
         }
 
-        // Initialize the tracker
-        document.addEventListener('DOMContentLoaded', function() {
+        // Update motivation text based on progress
+        function updateMotivationText() {
+            const progress = trackerState.completed.length;
+            let messageIndex = 0;
+            
+            if (progress === 0) {
+                messageIndex = 0;
+            } else if (progress === 1) {
+                messageIndex = 1;
+            } else if (progress >= 2 && progress <= 3) {
+                messageIndex = 2;
+            } else if (progress === 4) {
+                messageIndex = 3;
+            } else if (progress === 5) {
+                messageIndex = 4;
+            }
+            
+            motivationText.textContent = motivationMessages[messageIndex];
+        }
+
+        // Initialize the application
+        function init() {
+            // Load state from localStorage
             loadState();
             
+            // Add event listeners to step buttons
+            document.querySelectorAll('.step-tracker button').forEach(button => {
+                button.addEventListener('click', function() {
+                    const stepId = parseInt(this.getAttribute('data-step'));
+                    toggleStep(stepId);
+                });
+            });
+            
             // Add event listener to reset button
-            document.getElementById('reset-button').addEventListener('click', resetDay);
-        });
+            resetButton.addEventListener('click', resetDay);
+            
+            // Simulate some completed steps for demo (remove in production)
+            // setTimeout(() => {
+            //     toggleStep(1);
+            //     setTimeout(() => toggleStep(2), 500);
+            // }, 1000);
+        }
+
+        // Start the application when DOM is loaded
+        document.addEventListener('DOMContentLoaded', init);
     </script>
 </body>
 </html>
