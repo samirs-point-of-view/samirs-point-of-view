@@ -429,3 +429,61 @@
     </script>
 </body>
 </html>
+<!-- Morning Routine Tracker Section -->
+<section class="routine-tracker-section">
+    <div class="container">
+        <h2>Morning Routine Tracker</h2>
+        <p class="subtitle">Boost your productivity with a simple 5-step morning routine</p>
+        
+        <div class="tracker-card">
+            <div class="tracker-container">
+                <div class="step-tracker" id="step-tracker">
+                    <!-- Steps will be rendered here by JavaScript -->
+                </div>
+                
+                <div class="progress-container">
+                    <div class="progress-header">
+                        <span>Today's Progress</span>
+                        <span id="progress-percent">0%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress" id="progress-bar"></div>
+                    </div>
+                    
+                    <div class="stats">
+                        <div class="stat-box">
+                            <div class="stat-value" id="completed-count">0</div>
+                            <div class="stat-label">Completed Today</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value" id="streak-count">0</div>
+                            <div class="stat-label">Day Streak</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value" id="total-count">0</div>
+                            <div class="stat-label">Total Completed</div>
+                        </div>
+                    </div>
+                    
+                    <div class="completed-steps">
+                        <h3>Today's Completed Steps</h3>
+                        <ul class="completed-list" id="completed-list">
+                            <li>No steps completed yet</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="controls">
+                <button id="reset-button" class="reset-btn">Reset Today's Progress</button>
+            </div>
+            
+            <div class="motivation" id="motivation-text">
+                Start your morning routine to boost productivity!
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Add this script tag in your admin panel -->
+<script src="admin.js"></script>
