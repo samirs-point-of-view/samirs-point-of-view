@@ -1014,3 +1014,194 @@ footer {
         padding: 20px;
     }
 }
+/* === ADD THESE STYLES TO THE END OF YOUR EXISTING CSS FILE === */
+
+/* Morning Routine Tracker Styles */
+.routine-tracker-section {
+    padding: 40px 0;
+    background: #f8f9fa;
+}
+
+.tracker-card {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    margin-top: 20px;
+}
+
+.tracker-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+@media (max-width: 768px) {
+    .tracker-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+.step-tracker {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.tracker-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    border-left: 4px solid #4299e1;
+    transition: all 0.3s ease;
+}
+
+.tracker-item.completed {
+    background: #f0fff4;
+    border-left-color: #38a169;
+}
+
+.tracker-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.progress-container {
+    margin-top: 20px;
+}
+
+.progress-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.progress-bar {
+    height: 20px;
+    background: #e2e8f0;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress {
+    height: 100%;
+    background: linear-gradient(90deg, #4299e1, #38a169);
+    width: 0%;
+    transition: width 0.5s ease;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin: 25px 0;
+}
+
+.stat-box {
+    text-align: center;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 10px;
+}
+
+.stat-value {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #4299e1;
+    margin-bottom: 5px;
+}
+
+.stat-label {
+    color: #718096;
+    font-size: 0.9rem;
+}
+
+.completed-steps {
+    margin-top: 25px;
+    padding: 20px;
+    background: #f0fff4;
+    border-radius: 10px;
+    border-left: 4px solid #38a169;
+}
+
+.completed-steps h3 {
+    color: #2d3748;
+    margin-bottom: 15px;
+}
+
+.completed-list {
+    list-style: none;
+}
+
+.completed-list li {
+    padding: 10px 0;
+    border-bottom: 1px solid #e2e8f0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.completed-list li:last-child {
+    border-bottom: none;
+}
+
+.time {
+    color: #718096;
+    font-size: 0.9rem;
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+    margin: 25px 0;
+}
+
+button {
+    background: #4299e1;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background: #3182ce;
+    transform: translateY(-2px);
+}
+
+button.completed {
+    background: #38a169;
+}
+
+button.completed:hover {
+    background: #2f855a;
+}
+
+.reset-btn {
+    background: #e53e3e;
+}
+
+.reset-btn:hover {
+    background: #c53030;
+}
+
+.motivation {
+    text-align: center;
+    margin-top: 20px;
+    font-style: italic;
+    color: #718096;
+    font-size: 1.1rem;
+}
+
+.subtitle {
+    text-align: center;
+    color: #718096;
+    margin-bottom: 30px;
+    font-size: 1.2rem;
+}
